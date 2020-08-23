@@ -34,7 +34,7 @@ namespace NTT.PlugIn.UpdateAddress
                     // Obtain the target entity from the input parameters.
                     Entity targetEntity = (Entity)context.InputParameters["Target"];
 
-                    if (targetEntity.LogicalName != "acca_alpdeskbasedreview")
+                    if (targetEntity.LogicalName != "acca_devops")
                         return;
 
                     
