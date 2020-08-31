@@ -4,6 +4,8 @@ using FakeItEasy;
 using Microsoft.Xrm.Sdk;
 using FakeXrmEasy;
 using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NTT.PlugIn.UnitTest
 {
@@ -22,7 +24,11 @@ namespace NTT.PlugIn.UnitTest
             inputParameter.Add("Target", targetEntity);
 
             xrmFakeContext.ExecutePluginWith<UpdateAddress.Update>(inputParameter, null, null, null);
-            Assert.IsTrue(targetEntity["acca_name"] == "TEST");
+            var accadevops = (from ad in xrmFakeContext.CreateQuery("acca_devops")
+                              select ad).ToList();
+            Assert.IsNotNull(accadevops);
+            Assert.AreEqual(0, accadevops.Count());
+            //Assert.IsTrue(accadevops["acca_name"] == "Test26");
         }
     }
 }
